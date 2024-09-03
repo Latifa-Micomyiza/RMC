@@ -112,7 +112,7 @@ export default function Home() {
               <label className="block text-gray-700">Country</label>
               <input
                 type="text"
-                name="country"
+                name="Country"
                 className="w-full p-2 border rounded-md"
                 onChange={handleChange}
               />

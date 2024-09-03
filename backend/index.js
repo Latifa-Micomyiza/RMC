@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors'); // Import cors
 const router = require('./routes/Routes');
 
-
+require("./config/db")
 const app = express();
 
 app.use(express.json());

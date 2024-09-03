@@ -15,7 +15,7 @@ const IntellectualSchema = new mongoose.Schema({
   Combination: { type: String },
   FieldOfStudy: { type: String },
   Degree: { type: String },
-  GraduationYear: { type: Number },
+  GraduationYear: { type: Date,required:true },
   OtherField: { type: String },
   CurrentCarrier: { type: String },
   Position: { type: String },
