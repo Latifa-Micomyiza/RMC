@@ -68,15 +68,14 @@ export default function IntellectualList() {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">List of Intellectuals</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {intellectuals.length > 0 ? (
           intellectuals.map((intellectual) => (
             <div
               key={intellectual._id}
-              className=""
+              className="bg-white shadow-md p-6 rounded-lg"
             >
-                <p>
+                <p className="text-main text-2xl py-2 font-bold">
                 <strong>General Information</strong> 
               </p>
              <p>
@@ -92,12 +91,16 @@ export default function IntellectualList() {
                 <strong>Gender:</strong> {intellectual.Gender}
               </p>
               <p>
+                <strong>Personal Website</strong> 
+                {intellectual.PersonalWebsite}
+              </p>
+              <p>
                 <strong>Country:</strong> {intellectual.Country}
               </p>
               <p>
                 <strong>Residence:</strong> {intellectual.Residence}
               </p>
-              <p>
+              <p className="text-main text-2xl py-2 font-bold">
                 <strong>Educational Background</strong> 
               </p>
               <p>
@@ -115,7 +118,7 @@ export default function IntellectualList() {
               <p>
                 <strong>Graduation Year:</strong> {new Date(intellectual.GraduationYear).getFullYear()}
               </p>
-              <p>
+              <p className="text-main text-2xl py-2 font-bold">
                 <strong>Current Career</strong> 
               </p>
               <p>
@@ -131,7 +134,7 @@ export default function IntellectualList() {
                 <strong>Role:</strong> {intellectual.role}
               </p>
               <p>
-                <strong>Short Description:</strong> {intellectual.Personalinfo || 'N/A'}
+                <strong>Short Description:</strong> {intellectual.MoreInformation || 'N/A'}
               </p>
             </div>
           ))

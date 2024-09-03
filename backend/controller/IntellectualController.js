@@ -14,7 +14,7 @@ const register = async (req, res) => {
       LastName,
       Gender,
       Email,
-      Personalinfo,
+      PersonalWebsite,
       PhoneNumber,
       Country,
       Residence,
@@ -25,9 +25,11 @@ const register = async (req, res) => {
       Degree,
       GraduationYear,
       OtherField,
-      CurrentCarrier,
       Position,
       Location,
+      Organization,
+      MoreInformation
+      
     } = req.body;
 
     
@@ -41,7 +43,7 @@ const register = async (req, res) => {
       LastName,
       Gender,
       Email,
-      Personalinfo,
+      PersonalWebsite,
       PhoneNumber,
       Country,
       Residence,
@@ -52,7 +54,8 @@ const register = async (req, res) => {
       Degree,
       GraduationYear,
       OtherField,
-      CurrentCarrier,
+      Organization,
+      MoreInformation,
       Position,
       Location,
     });

@@ -31,12 +31,12 @@ export default function Navbar() {
             <div className="flex justify-center my-5">
                 <Image alt="logo" src="/RMC.png" width={100} height={100} />
             </div>
-            <h1 className="font-semibold text-xl  text-center py-3 text-main">
+            <div className="font-semibold text-xl  text-center py-3 text-main">
                 Let's get you started!
-            </h1>
-            <h1 className=" font-bold px-auto text-xl font-mono text-center">
+            </div>
+            <div className=" font-bold px-auto text-xl font-mono text-center">
                 MUSLIM INTELLECTUAL PORTAL
-            </h1>
+            </div>
             <div className="parent-nav">
                 <div>
                     <GoDotFill className="dot" />

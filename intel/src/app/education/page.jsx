@@ -10,8 +10,8 @@ export default function Education() {
     SchoolName: "",
     GraduationYear: "",
     Combination: "",
-    
-    EducationLevels: [{ FieldOfStudy: "", Degree: "Bachelors" }],
+    FieldOfStudy: "",
+    Degree: "Bachelors",
   });
 
   useEffect(() => {
@@ -25,22 +25,6 @@ export default function Education() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleEducationChange = (index, e) => {
-    const newEducationLevels = [...formData.EducationLevels];
-    newEducationLevels[index][e.target.name] = e.target.value;
-    setFormData({ ...formData, EducationLevels: newEducationLevels });
-  };
-
-  const handleAddEducationLevel = () => {
-    setFormData({
-      ...formData,
-      EducationLevels: [
-        ...formData.EducationLevels,
-        { FieldofStudy: "", Degree: "Bachelors" },
-      ],
-    });
-  };
-
   const handleContinue = () => {
     localStorage.setItem("educationData", JSON.stringify(formData));
     router.push("/professional");
@@ -52,11 +36,15 @@ export default function Education() {
       <div className="max-w-4xl mx-auto py-10 px-5">
         <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-col md:flex-row justify-between">
-            <div className="text-xl font-semibold mb-6 text-left">High School Level</div>
+            <div className="text-xl font-semibold mb-6 text-left">
+              High School Level
+            </div>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             <div>
-              <label className="block text-sm font-medium mb-1">School Name</label>
+              <label className="block text-sm font-medium mb-1">
+                School Name
+              </label>
               <input
                 type="text"
                 name="SchoolName"
@@ -66,7 +54,9 @@ export default function Education() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Graduation Year</label>
+              <label className="block text-sm font-medium mb-1">
+                Graduation Year
+              </label>
               <input
                 type="date"
                 name="GraduationYear"
@@ -78,7 +68,9 @@ export default function Education() {
           </div>
           <div className=" mb-4 items-center">
             <div>
-              <label className="block text-sm font-medium mb-1">Combination</label>
+              <label className="block text-sm font-medium mb-1">
+                Combination
+              </label>
               <input
                 type="text"
                 name="Combination"
@@ -87,47 +79,45 @@ export default function Education() {
                 className="w-full border border-gray-300 rounded-md px-3 py-2"
               />
             </div>
-          
           </div>
-          <div className="text-xl font-semibold mb-6 text-left">Other Education Levels</div>
+          <div className="text-xl font-semibold mb-6 text-left">
+            Other Education Levels
+          </div>
 
-          {formData.EducationLevels.map((education, index) => (
-            <div key={index} className="grid gap-6 md:grid-cols-2 mb-4">
-              <div>
-                <label className="block text-sm font-medium mb-1">Field of Study</label>
-                <input
-                  type="text"
-                  name="FieldOfStudy"
-                  value={education.FieldofStudy}
-                  onChange={(e) => handleEducationChange(index, e)}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">Degree Obtained</label>
-                <select
-                  name="Degree"
-                  value={education.Degree}
-                  onChange={(e) => handleEducationChange(index, e)}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2"
-                >
-                  <option value="Bachelors">Bachelors</option>
-                  <option value="Masters">Masters</option>
-                  <option value="PHD">PHD</option>
-                </select>
-              </div>
+          <div className="grid gap-6 md:grid-cols-2 mb-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Field of Study
+              </label>
+              <input
+                type="text"
+                name="FieldOfStudy"
+                value={formData.FieldOfStudy}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-md px-3 py-2"
+              />
             </div>
-          ))}
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Degree Obtained
+              </label>
+              <select
+                name="Degree"
+                value={formData.Degree}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-md px-3 py-2"
+              >
+                <option value="Bachelors">Bachelors</option>
+                <option value="Masters">Masters</option>
+                <option value="PHD">PHD</option>
+              </select>
+            </div>
+          </div>
 
-          <button
-            type="button"
-            onClick={handleAddEducationLevel}
-            className="text-submain underline"
-          >
-            Add Another Education Level
-          </button>
           <div className="flex justify-between py-4">
-            <Link href="/" className="text-submain underline">← Return</Link>
+            <Link href="/" className="text-submain underline">
+              ← Return
+            </Link>
             <button
               type="button"
               className="bg-main text-white px-10 py-2 rounded-md"

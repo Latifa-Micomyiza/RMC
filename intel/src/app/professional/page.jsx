@@ -43,72 +43,72 @@ export default function Professional() {
   };
 
   return (
-    <main className="min-h-screen bg-green-100">
+    <main className="min-h-screen bg-green-100 p-4">
       <Navbar />
-      <form className="space-y-6" onSubmit={handleSubmit}>
-        <h1 className="text-main text-xl  font-medium">Current Career</h1>
-        <div className="parent">
+    <div className="max-w-4xl mx-auto py-10 px-5">
+      <form className="space-y-6 " onSubmit={handleSubmit}>
+        <div className="text-main text-xl font-medium">Current Career</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label>Organization</label>
-            <br />
-            <input type="text" name="Organization" onChange={handleChange} />
-            <br />
+            <input
+              type="text"
+              name="Organization"
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-md p-2 mt-1"
+            />
           </div>
           <div>
             <label>Location</label>
-            <br />
             <input
               type="text"
               placeholder="e.g: KG 297 ST"
               name="Location"
               onChange={handleChange}
+              className="w-full border border-gray-300 rounded-md p-2 mt-1"
             />
-            <br />
           </div>
-        </div>
-        <div className="parent">
           <div>
             <label>Position</label>
-            <br />
-            <input type="text" name="Position" onChange={handleChange} />
-            <br />
+            <input
+              type="text"
+              name="Position"
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-md p-2 mt-1"
+            />
           </div>
         </div>
-        <div className="">
-          <div>
-          <label className="text-main text-xl parent mt-12 mb-8  font-medium">
+        <div>
+          <label className="text-main text-xl font-medium mt-12 mb-4 block">
             Additional Information
           </label>
-          <br />
           <textarea
             placeholder="Enter extra information"
-            className="parent bg-transparent border border-main rounded-md w-[400px] h-[120px] pl-2 py-3 "
+            className="w-full bg-transparent border-[1px] border-main rounded-md p-2"
             name="MoreInformation"
             onChange={handleChange}
           />
-          <br />
-          </div>
-         
         </div>
-        <label className="text-sm flex gap-3 ml-[200px]">
-                    <input
-                        type="checkbox"
-                        className="w-3 h-3 mt-[4px]"
-                        required
-                    />
-                    I hereby confirm that all the information provided is true
-                    and accurate to the best of my knowledge, and I agree to the
-                    terms and conditions of this platform.
-                </label>
-        <div className="flex justify-around py-4">
+        <label className="text-sm flex gap-3 mt-4">
+          <input
+            type="checkbox"
+            className="w-4 h-4 mt-1"
+            required
+          />
+          I hereby confirm that all the information provided is true and accurate
+          to the best of my knowledge, and I agree to the terms and conditions of
+          this platform.
+        </label>
+        <div className="flex justify-center py-4">
           <button
             type="submit"
-            className="border border-main bg-main text-white px-10 py-1 rounded-md"
+            className="border border-main bg-main text-white px-10 py-2 rounded-md"
           >
             Submit
           </button>
         </div>
       </form>
+      </div>
     </main>
   );
 }

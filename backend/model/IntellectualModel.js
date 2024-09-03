@@ -17,9 +17,10 @@ const IntellectualSchema = new mongoose.Schema({
   Degree: { type: String },
   GraduationYear: { type: Date,required:true },
   OtherField: { type: String },
-  CurrentCarrier: { type: String },
-  Position: { type: String },
-  Location: { type: String },
+  Organization: { type: String,required:true },
+  Position: { type: String,required:true },
+  Location: { type: String,required:true },
+  MoreInformation :{type:String,required:true},
   role: { type: String, enum: ['user', 'admin'], default: 'user' }, // Defaults to 'user'
 });
 
