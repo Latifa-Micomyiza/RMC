@@ -1,21 +1,11 @@
+// routes/intellectualRoutes.js
 const express = require('express');
 const router = express.Router();
-const { register, getAllIntellectuals } = require('../controller/IntellectualController');
-
-
-router.get('/', (req, res) => {
-  res.render('form');
-});
+const { register, getAllIntellectuals,login } = require('../controller/IntellectualController');
+const adminMiddleware = require('../middlewares/auth');
 
 router.post('/register', register);
+router.post("/login",login)
+router.get('/intellectuals', adminMiddleware, getAllIntellectuals); // Protect the route
 
-
-router.get('/all-intels', (req, res) => {
-  res.render('password');
-});
-
-
-router.post('/all-intels',getAllIntellectuals);
 module.exports = router;
-
-

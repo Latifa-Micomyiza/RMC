@@ -48,7 +48,7 @@ export default function Navbar() {
                 </div>
                 <div>
                     <GoDotFill className="dot" />
-                    <NavLink href="/proffessional">
+                    <NavLink href="/professional">
                         Proffessional Credentials
                     </NavLink>
                 </div>

@@ -1,25 +1,27 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const mongoose = require('mongoose');
-const router = require('./routes/Routes'); // Ensure correct path
+const cors = require('cors'); // Import cors
+const router = require('./routes/Routes');
+
 
 const app = express();
 
-// Set EJS as the templating engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended:true}))
 
-// Middleware to parse URL-encoded bodies (form data)
-app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static files (like CSS)
-app.use(express.static(path.join(__dirname, 'public')));
+// Configure CORS
+const corsOptions = {
+  origin: 'http://localhost:3000', 
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type',
+};
+
+app.use(cors(corsOptions));
 
 // Use the router for handling routes
 app.use('/', router);
-
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
