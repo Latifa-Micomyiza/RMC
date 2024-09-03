@@ -1,0 +1,43 @@
+{
+    "version": 2,
+    "projects": {
+      "backend": {
+        "src": "backend/index.js",
+        "functions": {
+          "api/**/*.js": {
+            "runtime": "nodejs16.x" 
+          }
+        }
+      },
+      "frontend": {
+        "src": "intel",
+        "builds": [
+          {
+            "src": "intel/package.json",
+            "use": "@vercel/next"
+          }
+        ]
+      }
+    },
+    "builds": [
+      {
+        "src": "backend/index.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "intel/package.json",
+        "use": "@vercel/next"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "backend/index.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "intel/$1"
+      }
+    ]
+  }
+  
