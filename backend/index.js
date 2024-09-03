@@ -1,21 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
 const cors = require('cors'); // Import cors
 const router = require('./routes/Routes');
 
-require("./config/db")
+require("./config/db");
 const app = express();
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended:true}))
-
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configure CORS
 const corsOptions = {
-  origin: 'http://localhost:3000', 
+  origin: 'http://localhost:3000',
   methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type',
+  allowedHeaders: 'Content-Type,Authorization', 
 };
 
 app.use(cors(corsOptions));

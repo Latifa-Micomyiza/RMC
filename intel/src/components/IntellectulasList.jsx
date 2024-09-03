@@ -1,71 +1,144 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function IntellectualList() {
   const [intellectuals, setIntellectuals] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
     const fetchIntellectuals = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem("token");
+        console.log("Token retrieved:", token);
+
         if (!token) {
-          setError('No token found. Please log in.');
+          setError("No token found. Please log in.");
+          router.push("/login");
           return;
         }
 
-        const response = await fetch('http://localhost:5000/intellectuals', {
-          method: 'GET',
+        console.log("Making fetch request to /intellectuals with token");
+
+        const response = await fetch("http://localhost:5000/intellectuals", {
+          method: "GET",
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
         });
 
         if (response.ok) {
           const data = await response.json();
+          console.log("Data fetched successfully:", data);
           setIntellectuals(data);
         } else {
-          // Handle different response statuses
+          console.error("Fetch failed with status:", response.status);
           if (response.status === 401) {
-            setError('Unauthorized. Please log in.');
-            router.push('/login');
+            setError("Unauthorized. Please log in.");
+            router.push("/login");
           } else if (response.status === 403) {
-            setError('Access denied. Admins only.');
+            setError("Access denied. Admins only.");
           } else {
-            const errorText = await response.text(); // Get detailed error message
+            const errorText = await response.text();
             setError(`Failed to fetch intellectuals: ${errorText}`);
           }
         }
       } catch (error) {
-        console.error('Error fetching intellectuals:', error); // Log error for debugging
-        setError('An error occurred. Please try again later.');
+        console.error("Error during fetch:", error);
+        setError("An error occurred. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchIntellectuals();
   }, [router]);
 
+  if (loading) {
+    return <p>Loading intellectuals...</p>;
+  }
+
   if (error) {
-    return <p className="text-red-500">{error}</p>; // Style the error message for better visibility
+    return <p className="text-red-500">{error}</p>;
   }
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">List of Intellectuals</h1>
-      <ul>
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6">List of Intellectuals</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {intellectuals.length > 0 ? (
           intellectuals.map((intellectual) => (
-            <li key={intellectual._id} className="border-b py-2">
-              {intellectual.FirstName} {intellectual.LastName} - {intellectual.Email}
-            </li>
+            <div
+              key={intellectual._id}
+              className=""
+            >
+                <p>
+                <strong>General Information</strong> 
+              </p>
+             <p>
+                <strong>Names:</strong> {intellectual.FirstName}{" "}{intellectual.LastName}
+              </p>
+              <p>
+                <strong>Email:</strong> {intellectual.Email}
+              </p>
+              <p>
+                <strong>Phone Number:</strong> {intellectual.PhoneNumber}
+              </p>
+              <p>
+                <strong>Gender:</strong> {intellectual.Gender}
+              </p>
+              <p>
+                <strong>Country:</strong> {intellectual.Country}
+              </p>
+              <p>
+                <strong>Residence:</strong> {intellectual.Residence}
+              </p>
+              <p>
+                <strong>Educational Background</strong> 
+              </p>
+              <p>
+                <strong>High School:</strong> {intellectual.SchoolName || 'N/A'}
+              </p>
+              <p>
+                <strong>Combination:</strong> {intellectual.Combination || 'N/A'}
+              </p>
+              <p>
+                <strong>Field of Study:</strong> {intellectual.FieldOfStudy || 'N/A'}
+              </p>
+              <p>
+                <strong>Degree:</strong> {intellectual.Degree || 'N/A'}
+              </p>
+              <p>
+                <strong>Graduation Year:</strong> {new Date(intellectual.GraduationYear).getFullYear()}
+              </p>
+              <p>
+                <strong>Current Career</strong> 
+              </p>
+              <p>
+                <strong>Organization:</strong> {intellectual.Organization || 'N/A'}
+              </p>
+              <p>
+                <strong>Position:</strong> {intellectual.Position || 'N/A'}
+              </p>
+              <p>
+                <strong>Location:</strong> {intellectual.Location || 'N/A'}
+              </p>
+              <p>
+                <strong>Role:</strong> {intellectual.role}
+              </p>
+              <p>
+                <strong>Short Description:</strong> {intellectual.Personalinfo || 'N/A'}
+              </p>
+            </div>
           ))
         ) : (
           <p>No intellectuals found.</p>
         )}
-      </ul>
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ const IntellectualSchema = new mongoose.Schema({
   LastName: { type: String, required: true },
   Gender: { type: String, required: true },
   Email: { type: String, required: true, unique: true },
-  Personalinfo: { type: String },
+  PersonalWebsite: { type: String },
   PhoneNumber: { type: String, required: true },
   Country: { type: String, required: true },
   Residence: { type: String, required: true },

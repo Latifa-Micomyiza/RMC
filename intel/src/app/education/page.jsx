@@ -10,7 +10,8 @@ export default function Education() {
     SchoolName: "",
     GraduationYear: "",
     Combination: "",
-    EducationLevels: [{ FieldofStudy: "", Degree: "Bachelors" }],
+    
+    EducationLevels: [{ FieldOfStudy: "", Degree: "Bachelors" }],
   });
 
   useEffect(() => {
@@ -96,7 +97,7 @@ export default function Education() {
                 <label className="block text-sm font-medium mb-1">Field of Study</label>
                 <input
                   type="text"
-                  name="FieldofStudy"
+                  name="FieldOfStudy"
                   value={education.FieldofStudy}
                   onChange={(e) => handleEducationChange(index, e)}
                   className="w-full border border-gray-300 rounded-md px-3 py-2"

@@ -6,12 +6,15 @@ export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false); // Added loading state
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
+    setError(''); // Clear previous errors
     try {
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch('http://localhost:5000/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -27,6 +30,8 @@ export default function LoginPage() {
       }
     } catch (error) {
       setError('An error occurred. Please try again later.');
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
@@ -41,6 +46,7 @@ export default function LoginPage() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            disabled={loading} // Disable input during loading
           />
         </div>
         <div>
@@ -50,14 +56,16 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            disabled={loading} // Disable input during loading
           />
         </div>
         {error && <p className="text-red-500">{error}</p>}
         <button
           type="submit"
           className="bg-main w-96 text-white px-4 py-2 rounded"
+          disabled={loading} // Disable button during loading
         >
-          Login
+          {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
     </main>
